@@ -1,0 +1,14 @@
+---
+- name: Clean up the environment
+  file:
+    dest: "{{ gce_venv }}"
+    state: absent
+  when: clean_environment
+
+- name: Install requirements
+  pip:
+    name:
+      - apache-libcloud
+    state: latest
+    virtualenv: "{{ gce_venv }}"
+    virtualenv_python: python2.7
